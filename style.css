@@ -1,0 +1,45 @@
+html {
+    background-color: #1b1b1b;
+    color: #fff;
+    font-family: sans-serif;
+    text-align: center;
+}
+body {
+    overflow: hidden;
+    height: 100vw;
+}
+
+h1 {
+    font-size: 5vw;
+}
+
+.entry {
+    font-size: 1.5vw;
+    user-select: none;
+    cursor: pointer;
+}
+
+.unchecked::before {
+    content: "☐ ";
+}
+
+.checked::before {
+    content: "☑ ";
+}
+
+/* .confetti {
+    width: 2vw;
+    height: 1vw;
+    background-color: red;
+    position: absolute;
+    animation: move 1.5s forwards;
+}
+
+@keyframes move {
+    0% {
+        bottom: 25vw;
+    }
+    100% {
+        bottom: -25vw;
+    }
+}   */

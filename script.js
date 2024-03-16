@@ -1,13 +1,13 @@
 let dat = {
-    "assignment1": "crackhead",
-    "assignment2": "crackhead(v2)"
+    "level": 1,
+    "exp": 0
 }
 
 let entries = document.querySelectorAll(".entry")
 
 for (let i = 0; i < entries.length; i++) {
     entries[i].onclick = () => {
-        if (entries[i].classList.includes("unchecked")) {
+        if (Object.values(entries[i].classList).indexOf('unchecked') > -1) {
             entries[i].classList.replace("unchecked", "checked")
         } else {
             entries[i].classList.replace("checked", "unchecked")

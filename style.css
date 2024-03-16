@@ -15,12 +15,22 @@ h1 {
 
 .entry {
     font-size: 1.5vw;
+    user-select: none;
+    cursor: pointer;
 }
 
 .unchecked::before {
-    content: "☐ "
+    content: "☐ ";
 }
 
 .checked::before {
-    content: "☑ "
+    content: "☑ ";
+}
+
+.confetti {
+    display: inline-block;
+    width: 2vw;
+    height: 2vw;
+    background-color: red;
+    margin: 1.5vw;
 }

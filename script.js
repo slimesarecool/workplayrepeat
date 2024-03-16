@@ -9,6 +9,7 @@ if (load("level")) {
 }
 
 let entries = document.querySelectorAll(".entry")
+let levelTXT = document.querySelector(".level")
 
 // Confetti code
 // let colors = ["lime", "red", "blue", "yellow"]
@@ -55,7 +56,6 @@ function rand(min, max) {
 
 function completeAssignment(time) {
     pdata["exp"] = pdata["exp"] + time
-    levelUpCheck()
 }
 
 function levelUpCheck() {
@@ -70,6 +70,12 @@ setInterval(function() {
     console.log("Data Saved!")
     console.log(load("level"))
     console.log(load("exp"))
-}, 1000) // Supposed to be 60000
+
+    levelUpCheck()
+
+    levelTXT.textContent = "Level: " + pdata["level"]
+}, 1000)
+
+ // Move saving to new loop with time of 60000
 
 // document.addEventListener("contextmenu", e => e.preventDefault())

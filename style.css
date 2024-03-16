@@ -13,6 +13,14 @@ h1 {
     font-size: 5vw;
 }
 
-.entry::before {
+.entry {
+    font-size: 1.5vw;
+}
+
+.unchecked::before {
     content: "☐ "
+}
+
+.checked::before {
+    content: "☑ "
 }

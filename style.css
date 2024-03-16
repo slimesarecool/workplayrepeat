@@ -27,24 +27,19 @@ h1 {
     content: "☑ ";
 }
 
-.confetti:root {
-    --pos: 0;
-}
-
-.confetti {
+/* .confetti {
     width: 2vw;
-    height: 2vw;
+    height: 1vw;
     background-color: red;
-    left: var(--pos);
     position: absolute;
     animation: move 1.5s forwards;
 }
 
 @keyframes move {
-    from {
+    0% {
         bottom: 25vw;
     }
-    to {
+    100% {
         bottom: -25vw;
     }
-}  
+}   */

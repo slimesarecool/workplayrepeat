@@ -10,6 +10,8 @@ function save(data) {
     }
 }
 
-function load() {
-    
+function load(name) {
+    return localStorage.getItem(name)
 }
+
+document.addEventListener("contextmenu", e => e.preventDefault());

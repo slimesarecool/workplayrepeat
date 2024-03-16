@@ -7,7 +7,11 @@ let entries = document.querySelectorAll(".entry")
 
 for (let i = 0; i < entries.length; i++) {
     entries[i].onclick = () => {
-        entries[i].class.replace(" unchecked", " checked ")
+        if (entries[i].classList.includes("unchecked")) {
+            entries[i].classList.replace("unchecked", "checked")
+        } else {
+            entries[i].classList.replace("checked", "unchecked")
+        }
     }
 }
 

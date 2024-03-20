@@ -27,19 +27,23 @@ h1 {
     content: "☑ ";
 }
 
-/* .confetti {
+.confetti {
     width: 2vw;
-    height: 1vw;
+    height: 2vh;
     background-color: red;
     position: absolute;
     animation: move 1.5s forwards;
 }
 
+.x::after {
+    content: "X";
+}
+
 @keyframes move {
     0% {
-        bottom: 25vw;
+        bottom: 75vw;
     }
     100% {
         bottom: -25vw;
     }
-}   */
+}  

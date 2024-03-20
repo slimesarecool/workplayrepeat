@@ -2,3 +2,8 @@ Checklist
 Calender
 Leveling and Exp
 Game
+Finish lvl thing
+
+Checklist Stuff:
+Make text area to add new assignments
+Fixed entries not being removed

@@ -5,5 +5,6 @@ Game
 Finish lvl thing
 
 Checklist Stuff:
-Make text area to add new assignments
-Fixed entries not being removed
+Fix enter key not working
+Add custom time to assignments
+Make checked status save

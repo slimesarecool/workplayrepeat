@@ -1,0 +1,102 @@
+html {
+    background-color: #1b1b1b;
+    color: #ffffff;
+    font-family: sans-serif;
+    text-align: center;
+    user-select: none;
+}
+
+body {
+    overflow-x: hidden;
+    overflow-y: hidden;
+    height: 100vw;
+}
+
+.title {
+    font-size: 6vw;
+}
+
+.descriptions {
+    font-size: 2vw;
+}
+
+h2 {
+    font-size: 3vw;
+}
+
+button, input {
+    background-color: #2f2f38;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: 0.5s;
+    padding: 0.5vw;
+}
+
+button:hover, input:hover {
+	transition: 0.5s;
+}
+
+button:active {
+	transition: 0.1s;
+	background-color: #15151a;
+}
+
+a {
+	color: #297bff;
+	text-decoration: none;
+	transition: color 0.15s;
+}
+
+a:hover {
+	color: #80b0ff;
+}
+
+a:active {
+	color: #004ac2;
+}
+
+.rainbow {
+    animation: rainbow 4s alternate;
+    animation-iteration-count: infinite;
+}
+
+@keyframes rainbow {
+    0% {
+        color: rgb(255, 0, 0);
+    }
+    10% {
+        color: rgb(255, 154, 0);
+    }
+    20% {
+        color: rgb(208, 222, 33);
+    }
+    30% {
+        color: rgb(79, 220, 74);
+    }
+    40% {
+        color: rgb(63, 218, 216);
+    }
+    50% {
+        color: rgb(47, 201, 226);
+    }
+    60% {
+        color: rgb(28, 127, 238);
+    }
+    70% {
+        color: rgb(95, 21, 242);
+    }
+    80% {
+        color: rgb(186, 12, 248);
+    }
+    90% {
+        color: rgb(251, 7, 217);
+    }
+    100% {
+        color: rgb(255, 0, 0);
+    }
+}

@@ -14,20 +14,34 @@ let entries = document.querySelectorAll(".entry")
 let addEntry = document.querySelector(".addentry")
 let inptxt = document.querySelector(".inptxt")
 let levelTXT = document.querySelector(".level")
-let colors = ["lime", "red", "blue", "yellow"]
+let expTXT = document.querySelector(".exp")
+let colors = ["lime", "red", "blue", "yellow", "fuchsia", "aqua"]
 
 for (let i = 0; i < entries.length; i++) {
     makeAssignmentClickable(entries[i])
 }
 
 addEntry.onclick = () => {
-    newAssignment(inptxt.value)
+    if (! inptxt.value == "") {
+        newAssignment(inptxt.value)
+        inptxt.value = ""
+    }
 }
+
+// inptxt.on("keydown", function (e) {
+//     if (e.key === "Enter" && ! inptxt.value == "") {
+//         if (! inptxt.value == "") {
+//             addEntry.click();
+//         }
+//     }
+// });
 
 if (loadList("assignments")) {
     let loadedData = loadList("assignments")
 
     for (var i = 0; i < loadedData.length; i++) {
+        // if 
+
         newAssignment(loadedData[i])
     } 
 }
@@ -47,7 +61,11 @@ function saveList(name, list) {
     localStorage.setItem(name + "Length", list.length)
 
     for (var i = 0; i < list.length; i++) {
-        localStorage.setItem(name + i, list[i])
+        localStorage.setItem(name + i, list[i].textContent)
+
+        if (list[i].classList.contains("checked")) {
+            localStorage.setItem(name + i + "Checked", "checked")
+        }
     }
 }
 
@@ -71,9 +89,13 @@ function rand(min, max) {
 }
 
 function completeAssignment(time) {
-    pdata["exp"] = pdata["exp"] + time
+    pdata["exp"] += time
 
     summonConfetti()
+}
+
+function uncompleteAssignment(time) {
+    pdata["exp"] -= time
 }
 
 function newAssignment(name) {
@@ -88,9 +110,14 @@ function newAssignment(name) {
 }
 
 function levelUpCheck() {
+    while (pdata["exp"] < 0) {
+        pdata["level"] -= 1
+        pdata["exp"]  += pdata["level"]
+    }
+
     while (pdata["exp"] >= pdata["level"]) {
-        pdata["exp"] = pdata["exp"] - pdata["level"]
-        pdata["level"] = pdata["level"] + 1
+        pdata["exp"] -= pdata["level"]
+        pdata["level"] += 1
     }
 }
 
@@ -119,6 +146,8 @@ function makeAssignmentClickable(entry) {
             completeAssignment(30)
         } else {
             entry.classList.replace("checked", "unchecked")
+
+            uncompleteAssignment(30)
         }
     }
 
@@ -138,17 +167,22 @@ setInterval(function() {
     levelUpCheck()
 
     levelTXT.textContent = "Level: " + pdata["level"]
+    expTXT.textContent = "EXP: " + pdata["exp"]
 
     let assignmentList = []
     let uentries = document.querySelectorAll(".entry")
 
     for (let i = 0; i < uentries.length; i++) {
-        assignmentList.push(uentries[i].textContent)
+        assignmentList.push(uentries[i])
     }    
 
     saveList("assignments", assignmentList)
+
+    if (uentries.length > 6) {
+        document.body.style.overflowY = "visible"
+    }
 }, 1000)
 
- // Move saving to new loop with time of 60000
+// Move saving to new loop with time of 60000
 
 // document.addEventListener("contextmenu", e => e.preventDefault())

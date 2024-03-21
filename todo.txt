@@ -7,4 +7,3 @@ Finish lvl thing
 Checklist Stuff:
 Fix enter key not working
 Add custom time to assignments
-Make checked status save

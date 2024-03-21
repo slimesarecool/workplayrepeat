@@ -38,11 +38,16 @@ addEntry.onclick = () => {
 
 if (loadList("assignments")) {
     let loadedData = loadList("assignments")
+    let loadedDataChecked = loadListChecked("assignments")
 
     for (var i = 0; i < loadedData.length; i++) {
-        // if 
+        let checked = false
 
-        newAssignment(loadedData[i])
+        if (loadedDataChecked[i] == "checked") {
+            checked = true
+        }
+
+        newAssignment(loadedData[i], checked)
     } 
 }
 
@@ -65,6 +70,8 @@ function saveList(name, list) {
 
         if (list[i].classList.contains("checked")) {
             localStorage.setItem(name + i + "Checked", "checked")
+        } else {
+            localStorage.setItem(name + i + "Checked", "unchecked")
         }
     }
 }
@@ -75,6 +82,17 @@ function loadList(name) {
 
     for (var i = 0; i < listlength; i++) {
         templist.push(localStorage.getItem(name + i))
+    }
+
+    return templist
+}
+
+function loadListChecked(name) {
+    let listlength = localStorage.getItem(name + "Length")
+    let templist = []
+
+    for (var i = 0; i < listlength; i++) {
+        templist.push(localStorage.getItem(name + i + "Checked"))
     }
 
     return templist
@@ -98,9 +116,13 @@ function uncompleteAssignment(time) {
     pdata["exp"] -= time
 }
 
-function newAssignment(name) {
+function newAssignment(name, checked) {
     let assignment = document.createElement("div")
-    assignment.classList = "entry unchecked"
+    if (checked) {
+        assignment.classList = "entry checked"
+    } else {
+        assignment.classList = "entry unchecked"
+    }
 
     assignment.innerHTML += name
 

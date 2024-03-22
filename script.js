@@ -111,9 +111,9 @@ function rand(min, max) {
 function completeAssignment(time) {
     pdata["exp"] += time
 
-    // summonColorfulConfetti([
-    //     "#ffadad", "#ffd6a5", "#fdffb6", "#caffbf", "#9bf6ff", "#a0c4ff", "#bdb2ff", "#ffc6ff"
-    // ], 8, time * 10)
+    summonColorfulConfetti([
+        "#ffadad", "#ffd6a5", "#fdffb6", "#caffbf", "#9bf6ff", "#a0c4ff", "#bdb2ff", "#ffc6ff"
+    ], 8, time * 10)
 
     // summonEmojiConfetti([
     //     "💀"

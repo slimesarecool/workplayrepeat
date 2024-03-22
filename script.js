@@ -15,7 +15,9 @@ let addEntry = document.querySelector(".addentry")
 let inptxt = document.querySelector(".inptxt")
 let levelTXT = document.querySelector(".level")
 let expTXT = document.querySelector(".exp")
-let colors = ["lime", "red", "blue", "yellow", "fuchsia", "aqua"]
+// let colors = ["lime", "red", "blue", "yellow", "fuchsia", "aqua"]
+
+const jsConfetti = new JSConfetti()
 
 for (let i = 0; i < entries.length; i++) {
     makeAssignmentClickable(entries[i])
@@ -109,7 +111,13 @@ function rand(min, max) {
 function completeAssignment(time) {
     pdata["exp"] += time
 
-    summonConfetti()
+    // summonColorfulConfetti([
+    //     "#ffadad", "#ffd6a5", "#fdffb6", "#caffbf", "#9bf6ff", "#a0c4ff", "#bdb2ff", "#ffc6ff"
+    // ], 8, time * 10)
+
+    // summonEmojiConfetti([
+    //     "💀"
+    // ], 35, time * 5)
 }
 
 function uncompleteAssignment(time) {
@@ -143,17 +151,34 @@ function levelUpCheck() {
     }
 }
 
-function summonConfetti() {
-    for (let i = 0; i < rand(35, 150); i++) {
-        let tmpcon = document.createElement("div")
-        tmpcon.classList = "confetti"
+// Old confetti code
+// function summonConfetti() {
+//     for (let i = 0; i < rand(35, 150); i++) {
+//         let tmpcon = document.createElement("div")
+//         tmpcon.classList = "confetti"
 
-        sleep(rand(rand(1, 100), rand(600, 1000))).then(() => { document.body.appendChild(tmpcon); });
+//         sleep(rand(rand(1, 100), rand(600, 1000))).then(() => { document.body.appendChild(tmpcon); });
 
-        tmpcon.style = "left: " + rand(0, 100).toString() + "vw" + "; background-color: " + colors[rand(0, colors.length - 1)] + ";"
+//         tmpcon.style = "left: " + rand(0, 100).toString() + "vw" + "; background-color: " + colors[rand(0, colors.length - 1)] + ";"
 
-        sleep(5000).then(() => { tmpcon.remove() })
-    }
+//         sleep(5000).then(() => { tmpcon.remove() })
+//     }
+// }
+
+function summonColorfulConfetti(colors, confettiSize, confettiNum) {
+    jsConfetti.addConfetti({
+        confettiColors: colors,
+        confettiRadius: confettiSize,
+        confettiNumber: confettiNum
+    })
+}
+
+function summonEmojiConfetti(emojis, emojiSize, confettiNum) {
+    jsConfetti.addConfetti({
+        emojis: emojis,
+        emojiSize: emojiSize,
+        confettiNumber: confettiNum
+    })
 }
 
 function sleep(ms) {

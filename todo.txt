@@ -1,9 +1,45 @@
-Checklist
-Calender
-Leveling and Exp
-Game
-Finish lvl thing
+Bugs Fix:
+Only allow clicking on assingments when ur hovering on the text
 
-Checklist Stuff:
-Fix enter key not working
+A1.3:
 Add custom time to assignments
+Make custom popup
+
+A1.3/1.4:
+Fix X button activating Checklist
+
+A1.3/1.4/1.5/1.6:
+Finish basic themes
+Sidebar
+
+A1.4:
+Add custom due date to assignments
+
+A1.5:
+Calender
+
+A1.5.1:
+Custom tests on calender
+
+A1.6:
+Dungeons
+
+B1.0:
+INV and cards
+Custom Confetti
+General code optimization
+Website cleanup
+
+B1.0/1.1:
+Packs
+
+B1.1:
+Custom themes
+Custom sfx
+
+B1.1/1.2:
+Custom dungeon packs
+
+B1.0/1.1/1.2/1.3:
+Complete all hw sfx
+complete all hw vfx

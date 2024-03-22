@@ -11,26 +11,27 @@
     content: "🗹 ";
 }
 
-.confetti {
+/* Old confetti Code */
+/* .confetti {
     width: 2vw;
     height: 2vh;
     background-color: red;
     position: absolute;
     animation: move 8s forwards;
-}
+} */
 
-.x::after {
-    content: "-☒-";
-}
-
-@keyframes move {
+/* @keyframes move {
     0% {
         bottom: 75vw;
     }
     100% {
         bottom: -1000vw;
     }
-}  
+}   */
+
+.x::after {
+    content: "-☒-";
+}
 
 .level {
     text-align: left;

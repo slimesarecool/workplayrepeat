@@ -1,5 +1,6 @@
 Bugs Fix:
 Only allow clicking on assingments when ur hovering on the text
+Replace chechmark box with image of checkmark box.
 
 A1.3:
 Add custom time to assignments

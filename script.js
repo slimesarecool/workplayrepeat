@@ -103,13 +103,13 @@ function rand(min, max) {
 function completeAssignment(time) {
     pdata["exp"] += time
 
-    // summonColorfulConfetti([
-    //     "#ffadad", "#ffd6a5", "#fdffb6", "#caffbf", "#9bf6ff", "#a0c4ff", "#bdb2ff", "#ffc6ff"
-    // ], 8, time * 10)
+    summonColorfulConfetti([
+        "#ffadad", "#ffd6a5", "#fdffb6", "#caffbf", "#9bf6ff", "#a0c4ff", "#bdb2ff", "#ffc6ff"
+    ], 8, time * 10)
 
-    summonEmojiConfetti([
-        "💀"
-    ], 65, time * 5)
+    // summonEmojiConfetti([
+    //     "💀"
+    // ], 45, time * 5)
 }
 
 function uncompleteAssignment(time) {
@@ -118,6 +118,7 @@ function uncompleteAssignment(time) {
 
 function newAssignment(name, checked) {
     let assignment = document.createElement("div")
+    
     if (checked) {
         assignment.classList = "entry checked"
     } else {
@@ -166,6 +167,8 @@ function summonColorfulConfetti(colors, confettiSize, confettiNum) {
 }
 
 function summonEmojiConfetti(emojis, emojiSize, confettiNum) {
+    // 35 = Small, 35 = Normal, 45 = Big = 65
+
     jsConfetti.addConfetti({
         emojis: emojis,
         emojiSize: emojiSize,
@@ -190,7 +193,7 @@ function makeAssignmentClickable(entry) {
         }
     }
 
-    let ex = document.createElement("div")
+    let ex = document.createElement("span")
     ex.classList = "x"
 
     ex.onclick = () => {
@@ -198,6 +201,44 @@ function makeAssignmentClickable(entry) {
     }
 
     entry.appendChild(ex)
+}
+
+function openPopup() {
+    let background = document.createElement("div")
+    background.style = "background-color: #000; opacity: 0.5; width: 100vw; height: 100vw; position: absolute; left: 0; top: 0; animation: fadein 0.5s"
+    document.body.appendChild(background)
+
+    let popup = document.createElement("div")
+    popup.style = "position: absolute; left: 25vw; top: 25vh; width: 50vw; height: 50vh; background-color: #fff; border-radius: 20px; color: #000; text-align: center; font-size: 2vw; animation: fadeincompletely 0.5s"
+
+    let container = document.createElement("h2")
+    container.innerText = "Create Assignment"
+
+    let timeText = document.createElement("p")
+    timeText.style = "font-size: 1.5vw"
+    timeText.innerText = "Time it takes to complete assigment:"
+
+    let timeInput = document.createElement("input")
+    timeInput.classList.add("popupdate")
+
+    let nameText = document.createElement("p")
+    nameText.style = "font-size: 1.5vw"
+    nameText.innerText = "Name:"
+
+    let nameInput = document.createElement("input")
+    nameInput.classList.add("popupdate")
+
+    let button = document.createElement("button")
+    button.classList.add("popup")
+    button.innerText = "Create Assignment"
+    
+    popup.appendChild(button)
+    popup.appendChild(container)
+    popup.appendChild(timeText)
+    popup.appendChild(timeInput)
+    popup.appendChild(nameText)
+    popup.appendChild(nameInput)
+    document.body.appendChild(popup)
 }
 
 setInterval(function() {
@@ -221,7 +262,6 @@ setInterval(function() {
         document.body.style.overflowY = "visible"
     }
 }, 1000)
-
 // Move saving to new loop with time of 60000
 
 // document.addEventListener("contextmenu", e => e.preventDefault())

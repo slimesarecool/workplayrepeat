@@ -1,13 +1,20 @@
 Bugs Fix:
 Only allow clicking on assingments when ur hovering on the text
 Replace chechmark box with image of checkmark box.
+Fix X button activating checklist
+Refactor Code (Virtualize Assignments)
+
+Other Features:
+Worlds
+Popout Mode (Required Finishing Vertical Mode)
+Custom calender due date
 
 A1.3:
 Add custom time to assignments
 Make custom popup
 
-A1.3/1.4:
-Fix X button activating Checklist
+A1.3/1.4/1.5:
+Vertical Mode
 
 A1.3/1.4/1.5/1.6:
 Finish basic themes

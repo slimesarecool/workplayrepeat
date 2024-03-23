@@ -30,7 +30,7 @@
 }   */
 
 .x::after {
-    content: "-☒-";
+    content: " ☒";
 }
 
 .level {
@@ -41,4 +41,22 @@
 .exp {
     text-align: left;
     font-size: 1.35vw;
+}
+
+@keyframes fadein {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0.5;
+    }
+}
+
+@keyframes fadeincompletely {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }

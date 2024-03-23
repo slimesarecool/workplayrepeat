@@ -3,7 +3,6 @@ html {
     color: #ffffff;
     font-family: sans-serif;
     text-align: center;
-    user-select: none;
     scrollbar-width: none;
 }
 
@@ -50,6 +49,18 @@ button:active {
 	transition: 0.1s;
 	background-color: #15151a;
 }
+
+.popup {
+    font-size: 1.5vw;
+    position: absolute;
+    top: calc(50vh - 3vw);
+    left: 50%;
+    transform: translate(-50%, 0)
+}
+
+/* .popupdate {
+    margin-top: 10vh;
+} */
 
 a {
 	color: #297bff;

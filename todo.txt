@@ -26,19 +26,19 @@ Add custom due date to assignments
 A1.5:
 Calender
 
-A1.5.1:
+A1.5/1.6:
 Custom tests on calender
 
 A1.6:
 Dungeons
 
-B1.0:
+A1.7:
 INV and cards
 Custom Confetti
+
+B1.0:
 General code optimization
 Website cleanup
-
-B1.0/1.1:
 Packs
 
 B1.1:

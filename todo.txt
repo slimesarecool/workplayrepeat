@@ -26,28 +26,35 @@ Add custom due date to assignments
 A1.5:
 Calender
 
-A1.5/1.6:
+A1.5.1:
 Custom tests on calender
 
-A1.6:
+B1.0:
 Dungeons
 
-A1.7:
+B1.2:
 INV and cards
 Custom Confetti
 
-B1.0:
+B1.3:
 General code optimization
 Website cleanup
 Packs
 
-B1.1:
+B1.4:
 Custom themes
 Custom sfx
 
-B1.1/1.2:
+B1.3/1.4:
 Custom dungeon packs
 
-B1.0/1.1/1.2/1.3:
-Complete all hw sfx
-complete all hw vfx
+B1.5:
+Finisher sfx and vfx
+
+B1.6:
+Custom pfp
+Custom pfp effects
+
+1.0:
+Accounts
+PFP effects implemented into accounts

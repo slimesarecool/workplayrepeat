@@ -3,6 +3,8 @@ let pdata = {
     exp: 0
 }
 
+let assignments = []
+
 // clear()
 
 if (load("level")) {
@@ -15,24 +17,13 @@ let addEntry = document.querySelector(".addentry")
 let inptxt = document.querySelector(".inptxt")
 let levelTXT = document.querySelector(".level")
 let expTXT = document.querySelector(".exp")
-// let colors = ["lime", "red", "blue", "yellow", "fuchsia", "aqua"]
 
 const jsConfetti = new JSConfetti()
-
-for (let i = 0; i < entries.length; i++) {
-    makeAssignmentClickable(entries[i])
-}
-
-addEntry.onclick = () => {
-    if (! inptxt.value == "") {
-        newAssignment(inptxt.value)
-        inptxt.value = ""
-    }
-}
 
 if (loadList("assignments")) {
     let loadedData = loadList("assignments")
     let loadedDataChecked = loadListChecked("assignments")
+    let time = 30
 
     for (var i = 0; i < loadedData.length; i++) {
         let checked = false
@@ -41,8 +32,21 @@ if (loadList("assignments")) {
             checked = true
         }
 
-        newAssignment(loadedData[i], checked)
+        assignments.push([loadedData[i], checked, time])
     } 
+}
+
+for (var i = 0; i < assignments.length; i++) {
+    let cassignment = assignments[i]
+
+    newAssignment(cassignment[0], cassignment[1], cassignment[2])
+}
+
+addEntry.onclick = () => {
+    if (! inptxt.value == "") {
+        newAssignment(inptxt.value, false, 30)
+        inptxt.value = ""
+    }
 }
 
 function save(dat) {
@@ -116,7 +120,7 @@ function uncompleteAssignment(time) {
     pdata["exp"] -= time
 }
 
-function newAssignment(name, checked) {
+function newAssignment(name, checked, time) {
     let assignment = document.createElement("div")
     
     if (checked) {
@@ -129,8 +133,12 @@ function newAssignment(name, checked) {
 
     document.body.appendChild(assignment)
 
-    makeAssignmentClickable(assignment)
+    makeAssignmentClickable(assignment, time)
 }
+
+// function newListAssignment(name, time) {
+//     assignments.push()
+// }
 
 function levelUpCheck() {
     while (pdata["exp"] < 0) {
@@ -143,20 +151,6 @@ function levelUpCheck() {
         pdata["level"] += 1
     }
 }
-
-// Old confetti code
-// function summonConfetti() {
-//     for (let i = 0; i < rand(35, 150); i++) {
-//         let tmpcon = document.createElement("div")
-//         tmpcon.classList = "confetti"
-
-//         sleep(rand(rand(1, 100), rand(600, 1000))).then(() => { document.body.appendChild(tmpcon); });
-
-//         tmpcon.style = "left: " + rand(0, 100).toString() + "vw" + "; background-color: " + colors[rand(0, colors.length - 1)] + ";"
-
-//         sleep(5000).then(() => { tmpcon.remove() })
-//     }
-// }
 
 function summonColorfulConfetti(colors, confettiSize, confettiNum) {
     jsConfetti.addConfetti({
@@ -180,16 +174,16 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-function makeAssignmentClickable(entry) {
+function makeAssignmentClickable(entry, time) {
     entry.onclick = () => {
         if (Object.values(entry.classList).indexOf('unchecked') > -1) {
             entry.classList.replace("unchecked", "checked")
 
-            completeAssignment(30)
+            completeAssignment(time)
         } else {
             entry.classList.replace("checked", "unchecked")
 
-            uncompleteAssignment(30)
+            uncompleteAssignment(time)
         }
     }
 
@@ -241,6 +235,29 @@ function openPopup() {
     document.body.appendChild(popup)
 }
 
+// setInterval(function() {
+//     save(pdata)
+
+//     levelUpCheck()
+
+//     levelTXT.textContent = "Level: " + pdata["level"]
+//     expTXT.textContent = "EXP: " + pdata["exp"]
+
+//     let assignmentList = []
+//     let uentries = document.querySelectorAll(".entry")
+
+//     for (let i = 0; i < uentries.length; i++) {
+//         assignmentList.push(uentries[i])
+//     }    
+
+//     saveList("assignments", assignmentList)
+
+//     if (uentries.length > 6) {
+//         document.body.style.overflowY = "visible"
+//     }
+// }, 1000)
+// Move saving to new loop with time of 60000
+
 setInterval(function() {
     save(pdata)
 
@@ -254,13 +271,10 @@ setInterval(function() {
 
     for (let i = 0; i < uentries.length; i++) {
         assignmentList.push(uentries[i])
+
     }    
 
     saveList("assignments", assignmentList)
-
-    if (uentries.length > 6) {
-        document.body.style.overflowY = "visible"
-    }
 }, 1000)
 // Move saving to new loop with time of 60000
 

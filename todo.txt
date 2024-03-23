@@ -5,9 +5,9 @@ Fix X button activating checklist
 Refactor Code (Virtualize Assignments)
 
 Other Features:
+Popout Mode (Requires Finishing Vertical Mode)
+Lists
 Worlds
-Popout Mode (Required Finishing Vertical Mode)
-Custom calender due date
 
 A1.3:
 Add custom time to assignments

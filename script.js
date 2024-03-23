@@ -22,17 +22,12 @@ const jsConfetti = new JSConfetti()
 
 if (loadList("assignments")) {
     let loadedData = loadList("assignments")
-    let loadedDataChecked = loadListChecked("assignments")
     let time = 30
 
     for (var i = 0; i < loadedData.length; i++) {
-        let checked = false
+        let val = loadedData[i]
 
-        if (loadedDataChecked[i] == "checked") {
-            checked = true
-        }
-
-        assignments.push([loadedData[i], checked, time])
+        assignments.push([val[0], val[1], val[2]])
     } 
 }
 
@@ -44,7 +39,7 @@ for (var i = 0; i < assignments.length; i++) {
 
 addEntry.onclick = () => {
     if (! inptxt.value == "") {
-        newAssignment(inptxt.value, false, 30)
+        newVirtualAssignment(inptxt.value, false, 30)
         inptxt.value = ""
     }
 }
@@ -64,36 +59,25 @@ function saveList(name, list) {
     localStorage.setItem(name + "Length", list.length)
 
     for (var i = 0; i < list.length; i++) {
-        localStorage.setItem(name + i, list[i].textContent)
-
-        if (list[i].classList.contains("checked")) {
-            localStorage.setItem(name + i + "Checked", "checked")
-        } else {
-            localStorage.setItem(name + i + "Checked", "unchecked")
-        }
+        localStorage.setItem(name + i, list[i][0])
+        localStorage.setItem(name + i + "Checked", list[i][1])
+        localStorage.setItem(name + i + "Time", list[i][2])
     }
 }
 
 function loadList(name) {
     let listlength = localStorage.getItem(name + "Length")
-    let templist = []
+    let list = []
 
     for (var i = 0; i < listlength; i++) {
-        templist.push(localStorage.getItem(name + i))
+        let v1 = localStorage.getItem(name + i)
+        let v2 = localStorage.getItem(name + i + "Checked")
+        let v3 = localStorage.getItem(name + i + "Time")
+
+        list.push([v1, v2, v3])
     }
 
-    return templist
-}
-
-function loadListChecked(name) {
-    let listlength = localStorage.getItem(name + "Length")
-    let templist = []
-
-    for (var i = 0; i < listlength; i++) {
-        templist.push(localStorage.getItem(name + i + "Checked"))
-    }
-
-    return templist
+    return list
 }
 
 function clear() {
@@ -118,6 +102,12 @@ function completeAssignment(time) {
 
 function uncompleteAssignment(time) {
     pdata["exp"] -= time
+}
+
+function newVirtualAssignment(name, checked, time) {
+    assignments.push([name, checked, time])
+
+    newAssignment(name, checked, time)
 }
 
 function newAssignment(name, checked, time) {
@@ -150,6 +140,9 @@ function levelUpCheck() {
         pdata["exp"] -= pdata["level"]
         pdata["level"] += 1
     }
+
+    levelTXT.textContent = "Level: " + pdata["level"]
+    expTXT.textContent = "EXP: " + pdata["exp"]
 }
 
 function summonColorfulConfetti(colors, confettiSize, confettiNum) {
@@ -161,7 +154,7 @@ function summonColorfulConfetti(colors, confettiSize, confettiNum) {
 }
 
 function summonEmojiConfetti(emojis, emojiSize, confettiNum) {
-    // 35 = Small, 35 = Normal, 45 = Big = 65
+    // Small, 35 = Normal, 45 = Big = 65
 
     jsConfetti.addConfetti({
         emojis: emojis,
@@ -174,14 +167,16 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-function makeAssignmentClickable(entry, time) {
-    entry.onclick = () => {
-        if (Object.values(entry.classList).indexOf('unchecked') > -1) {
-            entry.classList.replace("unchecked", "checked")
+function makeAssignmentClickable(assigment, time) {
+    alert(assigment)
+
+    assigment.onclick = () => {
+        if (Object.values(assigment.classList).indexOf('unchecked') > -1) {
+            assigment.classList.replace("unchecked", "checked")
 
             completeAssignment(time)
         } else {
-            entry.classList.replace("checked", "unchecked")
+            assigment.classList.replace("checked", "unchecked")
 
             uncompleteAssignment(time)
         }
@@ -191,10 +186,10 @@ function makeAssignmentClickable(entry, time) {
     ex.classList = "x"
 
     ex.onclick = () => {
-        entry.remove()
+        assigment.remove()
     }
 
-    entry.appendChild(ex)
+    assigment.appendChild(ex)
 }
 
 function openPopup() {
@@ -235,46 +230,12 @@ function openPopup() {
     document.body.appendChild(popup)
 }
 
-// setInterval(function() {
-//     save(pdata)
-
-//     levelUpCheck()
-
-//     levelTXT.textContent = "Level: " + pdata["level"]
-//     expTXT.textContent = "EXP: " + pdata["exp"]
-
-//     let assignmentList = []
-//     let uentries = document.querySelectorAll(".entry")
-
-//     for (let i = 0; i < uentries.length; i++) {
-//         assignmentList.push(uentries[i])
-//     }    
-
-//     saveList("assignments", assignmentList)
-
-//     if (uentries.length > 6) {
-//         document.body.style.overflowY = "visible"
-//     }
-// }, 1000)
-// Move saving to new loop with time of 60000
-
 setInterval(function() {
     save(pdata)
 
     levelUpCheck()
 
-    levelTXT.textContent = "Level: " + pdata["level"]
-    expTXT.textContent = "EXP: " + pdata["exp"]
-
-    let assignmentList = []
-    let uentries = document.querySelectorAll(".entry")
-
-    for (let i = 0; i < uentries.length; i++) {
-        assignmentList.push(uentries[i])
-
-    }    
-
-    saveList("assignments", assignmentList)
+    saveList("assignments", assignments)
 }, 1000)
 // Move saving to new loop with time of 60000
 

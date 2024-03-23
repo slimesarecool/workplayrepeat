@@ -30,14 +30,6 @@ addEntry.onclick = () => {
     }
 }
 
-// inptxt.on("keydown", function (e) {
-//     if (e.key === "Enter" && ! inptxt.value == "") {
-//         if (! inptxt.value == "") {
-//             addEntry.click();
-//         }
-//     }
-// });
-
 if (loadList("assignments")) {
     let loadedData = loadList("assignments")
     let loadedDataChecked = loadListChecked("assignments")
@@ -111,13 +103,13 @@ function rand(min, max) {
 function completeAssignment(time) {
     pdata["exp"] += time
 
-    summonColorfulConfetti([
-        "#ffadad", "#ffd6a5", "#fdffb6", "#caffbf", "#9bf6ff", "#a0c4ff", "#bdb2ff", "#ffc6ff"
-    ], 8, time * 10)
+    // summonColorfulConfetti([
+    //     "#ffadad", "#ffd6a5", "#fdffb6", "#caffbf", "#9bf6ff", "#a0c4ff", "#bdb2ff", "#ffc6ff"
+    // ], 8, time * 10)
 
-    // summonEmojiConfetti([
-    //     "💀"
-    // ], 35, time * 5)
+    summonEmojiConfetti([
+        "💀"
+    ], 65, time * 5)
 }
 
 function uncompleteAssignment(time) {

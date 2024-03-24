@@ -5,14 +5,13 @@ let pdata = {
 
 let assignments = []
 
-// clear()
+clear()
 
 if (load("level")) {
     pdata["level"] = parseInt(load("level"))
     pdata["exp"] = parseInt(load("exp"))
 }
 
-let entries = document.querySelectorAll(".entry")
 let addEntry = document.querySelector(".addentry")
 let inptxt = document.querySelector(".inptxt")
 let levelTXT = document.querySelector(".level")
@@ -22,7 +21,6 @@ const jsConfetti = new JSConfetti()
 
 if (loadList("assignments")) {
     let loadedData = loadList("assignments")
-    let time = 30
 
     for (var i = 0; i < loadedData.length; i++) {
         let val = loadedData[i]
@@ -123,7 +121,25 @@ function newAssignment(name, checked, time) {
 
     document.body.appendChild(assignment)
 
-    makeAssignmentClickable(assignment, time)
+    assignment.onclick = () => {
+        // Replace with Image
+        if (Object.values(assignment.classList).indexOf('unchecked') > -1) {
+            assignment.classList.replace("unchecked", "checked")
+            completeAssignment(time)
+        } else {
+            assignment.classList.replace("checked", "unchecked")
+            uncompleteAssignment(time)
+        }
+    }
+
+    let ex = document.createElement("span")
+    ex.classList = "x"
+
+    ex.onclick = () => {
+        assignment.remove()
+    }
+
+    assignment.appendChild(ex)
 }
 
 // function newListAssignment(name, time) {
@@ -142,7 +158,7 @@ function levelUpCheck() {
     }
 
     levelTXT.textContent = "Level: " + pdata["level"]
-    expTXT.textContent = "EXP: " + pdata["exp"]
+    expTXT.textContent = "Exp: " + pdata["exp"]
 }
 
 function summonColorfulConfetti(colors, confettiSize, confettiNum) {
@@ -168,16 +184,13 @@ function sleep(ms) {
 }
 
 function makeAssignmentClickable(assigment, time) {
-    alert(assigment)
-
     assigment.onclick = () => {
+        // Replace with Image
         if (Object.values(assigment.classList).indexOf('unchecked') > -1) {
             assigment.classList.replace("unchecked", "checked")
-
             completeAssignment(time)
         } else {
             assigment.classList.replace("checked", "unchecked")
-
             uncompleteAssignment(time)
         }
     }

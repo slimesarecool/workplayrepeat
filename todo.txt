@@ -2,12 +2,15 @@ Bugs Fix:
 Only allow clicking on assingments when ur hovering on the text
 Replace chechmark box with image of checkmark box.
 Fix X button activating checklist
-Refactor Code (Virtualize Assignments)
+Refactor Code (Virtualize Assignments) (MOSTLY DONE)
+Save checking (Can be done by replacing checkmark box with image of chechmark box)
 
 Other Features:
 Popout Mode (Requires Finishing Vertical Mode)
 Lists
 Worlds
+Experience Bar
+Quests
 
 A1.3:
 Add custom time to assignments

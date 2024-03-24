@@ -5,7 +5,7 @@ let pdata = {
 
 let assignments = []
 
-clear()
+// clear()
 
 if (load("level")) {
     pdata["level"] = parseInt(load("level"))
@@ -21,6 +21,7 @@ const jsConfetti = new JSConfetti()
 
 if (loadList("assignments")) {
     let loadedData = loadList("assignments")
+    alert(loadedData)
 
     for (var i = 0; i < loadedData.length; i++) {
         let val = loadedData[i]
@@ -105,10 +106,10 @@ function uncompleteAssignment(time) {
 function newVirtualAssignment(name, checked, time) {
     assignments.push([name, checked, time])
 
-    newAssignment(name, checked, time)
+    newAssignment(name, checked, time, assignments.length - 1)
 }
 
-function newAssignment(name, checked, time) {
+function newAssignment(name, checked, time, vassignmenti) {
     let assignment = document.createElement("div")
     
     if (checked) {
@@ -123,10 +124,12 @@ function newAssignment(name, checked, time) {
 
     assignment.onclick = () => {
         // Replace with Image
-        if (Object.values(assignment.classList).indexOf('unchecked') > -1) {
+        if (assignments[vassignmenti][1] == false) {
+            assignments[vassignmenti][1] = true
             assignment.classList.replace("unchecked", "checked")
             completeAssignment(time)
         } else {
+            assignments[vassignmenti][1] = false
             assignment.classList.replace("checked", "unchecked")
             uncompleteAssignment(time)
         }

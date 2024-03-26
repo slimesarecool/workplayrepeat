@@ -21,24 +21,21 @@ const jsConfetti = new JSConfetti()
 
 if (loadList("assignments")) {
     let loadedData = loadList("assignments")
-    alert(loadedData)
 
     for (var i = 0; i < loadedData.length; i++) {
         let val = loadedData[i]
-
         assignments.push([val[0], val[1], val[2]])
     } 
 }
 
 for (var i = 0; i < assignments.length; i++) {
     let cassignment = assignments[i]
-
-    newAssignment(cassignment[0], cassignment[1], cassignment[2])
+    newAssignment(cassignment[0], cassignment[1], cassignment[2], i)
 }
 
 addEntry.onclick = () => {
     if (! inptxt.value == "") {
-        newVirtualAssignment(inptxt.value, false, 30)
+        newVirtualAssignment(inptxt.value, false, rand(1, 120))
         inptxt.value = ""
     }
 }
@@ -111,11 +108,11 @@ function newVirtualAssignment(name, checked, time) {
 
 function newAssignment(name, checked, time, vassignmenti) {
     let assignment = document.createElement("div")
+
+    assignment.classList = "entry unchecked"
     
-    if (checked) {
-        assignment.classList = "entry checked"
-    } else {
-        assignment.classList = "entry unchecked"
+    if (checked === "true") {
+        assignment.classList.replace("unchecked", "checked")
     }
 
     assignment.innerHTML += name
@@ -144,10 +141,6 @@ function newAssignment(name, checked, time, vassignmenti) {
 
     assignment.appendChild(ex)
 }
-
-// function newListAssignment(name, time) {
-//     assignments.push()
-// }
 
 function levelUpCheck() {
     while (pdata["exp"] < 0) {
@@ -182,52 +175,26 @@ function summonEmojiConfetti(emojis, emojiSize, confettiNum) {
     })
 }
 
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-function makeAssignmentClickable(assigment, time) {
-    assigment.onclick = () => {
-        // Replace with Image
-        if (Object.values(assigment.classList).indexOf('unchecked') > -1) {
-            assigment.classList.replace("unchecked", "checked")
-            completeAssignment(time)
-        } else {
-            assigment.classList.replace("checked", "unchecked")
-            uncompleteAssignment(time)
-        }
-    }
-
-    let ex = document.createElement("span")
-    ex.classList = "x"
-
-    ex.onclick = () => {
-        assigment.remove()
-    }
-
-    assigment.appendChild(ex)
-}
-
 function openPopup() {
     let background = document.createElement("div")
     background.style = "background-color: #000; opacity: 0.5; width: 100vw; height: 100vw; position: absolute; left: 0; top: 0; animation: fadein 0.5s"
     document.body.appendChild(background)
 
     let popup = document.createElement("div")
-    popup.style = "position: absolute; left: 25vw; top: 25vh; width: 50vw; height: 50vh; background-color: #fff; border-radius: 20px; color: #000; text-align: center; font-size: 2vw; animation: fadeincompletely 0.5s"
+    popup.style = "position: absolute; left: 25vw; top: 25vh; width: 55vw; height: 50vh; background-color: #fff; border-radius: 20px; color: #000; text-align: center; font-size: 2vw; animation: fadeincompletely 0.5s"
 
     let container = document.createElement("h2")
     container.innerText = "Create Assignment"
 
     let timeText = document.createElement("p")
-    timeText.style = "font-size: 1.5vw"
+    timeText.style = "font-size: 1.25vw"
     timeText.innerText = "Time it takes to complete assigment:"
 
     let timeInput = document.createElement("input")
     timeInput.classList.add("popupdate")
 
     let nameText = document.createElement("p")
-    nameText.style = "font-size: 1.5vw"
+    nameText.style = "font-size: 1.25vw"
     nameText.innerText = "Name:"
 
     let nameInput = document.createElement("input")
@@ -244,13 +211,31 @@ function openPopup() {
     popup.appendChild(nameText)
     popup.appendChild(nameInput)
     document.body.appendChild(popup)
+
+    button.onclick = () => {
+        if (isNumeric(timeInput.value)) {
+            newVirtualAssignment(nameInput.value, false, timeInput.value)
+            popup.remove()
+            background.remove()
+        } else {
+            timeText.innerText = "Error! Not a number!"
+            sleep(2000).then(() => { timeText.innerText = "Time it takes to complete assigment:" })
+        }
+    }
+}
+
+function isNumeric(str) {
+    if (typeof str != "string") return false
+    return !isNaN(str) && !isNaN(parseFloat(str))
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 setInterval(function() {
     save(pdata)
-
     levelUpCheck()
-
     saveList("assignments", assignments)
 }, 1000)
 // Move saving to new loop with time of 60000

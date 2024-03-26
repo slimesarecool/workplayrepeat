@@ -2,8 +2,6 @@ Bugs Fix:
 Only allow clicking on assingments when ur hovering on the text
 Replace chechmark box with image of checkmark box.
 Fix X button activating checklist
-Refactor Code (Virtualize Assignments) (MOSTLY DONE)
-Save checking (Can be done by replacing checkmark box with image of chechmark box)
 
 Other Features:
 Popout Mode (Requires Finishing Vertical Mode)
@@ -12,16 +10,14 @@ Worlds
 Experience Bar
 Quests
 
-A1.3:
-Add custom time to assignments
-Make custom popup
-
 A1.3/1.4/1.5:
 Vertical Mode
 
 A1.3/1.4/1.5/1.6:
 Finish basic themes
 Sidebar
+Make custom time for assignments accessible after completing assignment
+Make clicking on the bg hide the popup
 
 A1.4:
 Add custom due date to assignments

@@ -52,7 +52,7 @@ button:active {
 .popup {
     font-size: 1.5vw;
     position: absolute;
-    top: calc(50vh - 3vw);
+    top: calc(52vh - 3vw);
     left: 50%;
     transform: translate(-50%, 0)
 }

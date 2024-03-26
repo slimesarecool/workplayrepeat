@@ -12,7 +12,6 @@ if (load("level")) {
     pdata["exp"] = parseInt(load("exp"))
 }
 
-let addEntry = document.querySelector(".addentry")
 let inptxt = document.querySelector(".inptxt")
 let levelTXT = document.querySelector(".level")
 let expTXT = document.querySelector(".exp")
@@ -31,13 +30,6 @@ if (loadList("assignments")) {
 for (var i = 0; i < assignments.length; i++) {
     let cassignment = assignments[i]
     newAssignment(cassignment[0], cassignment[1], cassignment[2], i)
-}
-
-addEntry.onclick = () => {
-    if (! inptxt.value == "") {
-        newVirtualAssignment(inptxt.value, false, rand(1, 120))
-        inptxt.value = ""
-    }
 }
 
 function save(dat) {

@@ -5,7 +5,7 @@ let pdata = {
 
 let assignments = []
 
-// clear()
+clear()
 
 if (load("level")) {
     pdata["level"] = parseInt(load("level"))
@@ -23,15 +23,15 @@ if (loadList("assignments")) {
 
     for (var i = 0; i < loadedData.length; i++) {
         let val = loadedData[i]
-        assignments.push([val[0], val[1], val[2]])
+        assignments.push([val[0], val[1], val[2], i])
     } 
 }
 
 for (var i = 0; i < assignments.length; i++) {
     let cassignment = assignments[i]
-    newAssignment(cassignment[0], cassignment[1], cassignment[2], i)
+    newAssignment(cassignment[0], cassignment[1], cassignment[2], cassignment[3])
 }
-// d
+
 function save(dat) {
     for (var key in dat) {
         let val = dat[key]

@@ -11,7 +11,7 @@ if (load("level")) {
     pdata["level"] = parseInt(load("level"))
     pdata["exp"] = parseInt(load("exp"))
 }
-
+// test
 let inptxt = document.querySelector(".inptxt")
 let levelTXT = document.querySelector(".level")
 let expTXT = document.querySelector(".exp")

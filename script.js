@@ -188,15 +188,15 @@ function openPopup() {
     container.innerText = "Create Assignment"
 
     let nameText = document.createElement("p")
-    nameText.style = "font-size: 1.25vw"
+    nameText.style = "font-size: 1.35vw"
     nameText.innerText = "Name:"
 
     let nameInput = document.createElement("input")
     nameInput.classList.add("popupdate")
 
     let timeText = document.createElement("p")
-    timeText.style = "font-size: 1.25vw"
-    timeText.innerText = "Time it takes to complete assigment:"
+    timeText.style = "font-size: 1.35vw"
+    timeText.innerText = "Time it takes to complete assigment (minutes):"
 
     let timeInput = document.createElement("input")
     timeInput.classList.add("popupdate")

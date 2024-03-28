@@ -23,7 +23,7 @@ if (loadList("assignments")) {
 
     for (var i = 0; i < loadedData.length; i++) {
         let val = loadedData[i]
-        assignments.push([val[0], val[1], val[2], i])
+        assignments.push([val[0], val[1], val[2].toString(), i])
     } 
 }
 
@@ -135,14 +135,14 @@ function newAssignment(name, checked, time, vassignmenti) {
 }
 
 function levelUpCheck() {
-    while (pdata["exp"] < 0) {
-        pdata["level"] -= 1
-        pdata["exp"]  += pdata["level"]
-    }
-
     while (pdata["exp"] >= pdata["level"]) {
         pdata["exp"] -= pdata["level"]
         pdata["level"] += 1
+    }
+    
+    while (pdata["exp"] < 0) {
+        pdata["level"] -= 1
+        pdata["exp"]  += pdata["level"]
     }
 
     levelTXT.textContent = "Level: " + pdata["level"]

@@ -5,7 +5,7 @@ let pdata = {
 
 let assignments = []
 
-clear()
+// clear()
 
 if (load("level")) {
     pdata["level"] = parseInt(load("level"))

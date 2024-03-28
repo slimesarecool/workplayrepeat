@@ -5,7 +5,7 @@ let pdata = {
 
 let assignments = []
 
-// clear()
+clear()
 
 if (load("level")) {
     pdata["level"] = parseInt(load("level"))
@@ -152,6 +152,7 @@ function newAssignment(name, checked, time, vassignmenti) {
     ex.classList = "x"
 
     ex.onclick = () => {
+        assignments.splice(vassignmenti, 1)
         assignment.remove()
     }
 

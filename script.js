@@ -5,16 +5,17 @@ let pdata = {
 
 let assignments = []
 
-clear()
+// clear()
 
 if (load("level")) {
     pdata["level"] = parseInt(load("level"))
     pdata["exp"] = parseInt(load("exp"))
 }
-// test
+
 let inptxt = document.querySelector(".inptxt")
 let levelTXT = document.querySelector(".level")
 let expTXT = document.querySelector(".exp")
+let cooldown = false
 
 const jsConfetti = new JSConfetti()
 
@@ -23,7 +24,7 @@ if (loadList("assignments")) {
 
     for (var i = 0; i < loadedData.length; i++) {
         let val = loadedData[i]
-        assignments.push([val[0], val[1], val[2].toString(), i])
+        assignments.push([val[0], val[1], parseInt(val[2]), i])
     } 
 }
 
@@ -77,7 +78,7 @@ function rand(min, max) {
 }
 
 function completeAssignment(time) {
-    pdata["exp"] += time
+    increaseExp(time)
 
     summonColorfulConfetti([
         "#ffadad", "#ffd6a5", "#fdffb6", "#caffbf", "#9bf6ff", "#a0c4ff", "#bdb2ff", "#ffc6ff"
@@ -89,7 +90,24 @@ function completeAssignment(time) {
 }
 
 function uncompleteAssignment(time) {
-    pdata["exp"] -= time
+    increaseExp(time * -1)
+}
+
+function increaseExp(amount) {
+    pdata["exp"] += amount
+
+    while (pdata["exp"] >= pdata["level"]) {
+        pdata["exp"] -= pdata["level"]
+        pdata["level"] += 1
+    }
+    
+    while (pdata["exp"] < 0) {
+        pdata["level"] -= 1
+        pdata["exp"]  += pdata["level"]
+    }
+
+    levelTXT.textContent = "Level: " + pdata["level"]
+    expTXT.textContent = "Exp: " + pdata["exp"]
 }
 
 function newVirtualAssignment(name, checked, time) {
@@ -113,14 +131,20 @@ function newAssignment(name, checked, time, vassignmenti) {
 
     assignment.onclick = () => {
         // Replace with Image
-        if (assignments[vassignmenti][1] == false) {
-            assignments[vassignmenti][1] = true
-            assignment.classList.replace("unchecked", "checked")
-            completeAssignment(time)
-        } else {
-            assignments[vassignmenti][1] = false
-            assignment.classList.replace("checked", "unchecked")
-            uncompleteAssignment(time)
+        if (!cooldown) {
+            cooldown = true
+
+            if (assignments[vassignmenti][1] == false) {
+                assignments[vassignmenti][1] = true
+                assignment.classList.replace("unchecked", "checked")
+                completeAssignment(parseInt(time))
+            } else {
+                assignments[vassignmenti][1] = false
+                assignment.classList.replace("checked", "unchecked")
+                uncompleteAssignment(parseInt(time))
+            }
+
+            sleep(250).then(() => { cooldown = false })
         }
     }
 
@@ -132,21 +156,6 @@ function newAssignment(name, checked, time, vassignmenti) {
     }
 
     assignment.appendChild(ex)
-}
-
-function levelUpCheck() {
-    while (pdata["exp"] >= pdata["level"]) {
-        pdata["exp"] -= pdata["level"]
-        pdata["level"] += 1
-    }
-    
-    while (pdata["exp"] < 0) {
-        pdata["level"] -= 1
-        pdata["exp"]  += pdata["level"]
-    }
-
-    levelTXT.textContent = "Level: " + pdata["level"]
-    expTXT.textContent = "Exp: " + pdata["exp"]
 }
 
 function summonColorfulConfetti(colors, confettiSize, confettiNum) {
@@ -178,13 +187,6 @@ function openPopup() {
     let container = document.createElement("h2")
     container.innerText = "Create Assignment"
 
-    let timeText = document.createElement("p")
-    timeText.style = "font-size: 1.25vw"
-    timeText.innerText = "Time it takes to complete assigment:"
-
-    let timeInput = document.createElement("input")
-    timeInput.classList.add("popupdate")
-
     let nameText = document.createElement("p")
     nameText.style = "font-size: 1.25vw"
     nameText.innerText = "Name:"
@@ -192,16 +194,23 @@ function openPopup() {
     let nameInput = document.createElement("input")
     nameInput.classList.add("popupdate")
 
+    let timeText = document.createElement("p")
+    timeText.style = "font-size: 1.25vw"
+    timeText.innerText = "Time it takes to complete assigment:"
+
+    let timeInput = document.createElement("input")
+    timeInput.classList.add("popupdate")
+
     let button = document.createElement("button")
     button.classList.add("popup")
     button.innerText = "Create Assignment"
     
     popup.appendChild(button)
     popup.appendChild(container)
-    popup.appendChild(timeText)
-    popup.appendChild(timeInput)
     popup.appendChild(nameText)
     popup.appendChild(nameInput)
+    popup.appendChild(timeText)
+    popup.appendChild(timeInput)
     document.body.appendChild(popup)
 
     button.onclick = () => {
@@ -211,8 +220,13 @@ function openPopup() {
             background.remove()
         } else {
             timeText.innerText = "Error! Not a number!"
-            sleep(2000).then(() => { timeText.innerText = "Time it takes to complete assigment:" })
+            sleep(1500).then(() => { timeText.innerText = "Time it takes to complete assigment:" })
         }
+    }
+
+    background.onclick = () => {
+        popup.remove()
+        background.remove()
     }
 }
 
@@ -227,9 +241,7 @@ function sleep(ms) {
 
 setInterval(function() {
     save(pdata)
-    levelUpCheck()
     saveList("assignments", assignments)
 }, 1000)
-// Move saving to new loop with time of 60000
 
 // document.addEventListener("contextmenu", e => e.preventDefault())

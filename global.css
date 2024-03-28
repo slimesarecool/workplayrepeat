@@ -4,6 +4,7 @@ html {
     font-family: sans-serif;
     text-align: center;
     scrollbar-width: none;
+    user-select: none;
 }
 
 body {

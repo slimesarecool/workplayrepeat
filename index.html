@@ -6,15 +6,21 @@
         <link rel="stylesheet" href="global.css">
         <link rel="stylesheet" href="style.css">
         <link rel="icon" href="icon.png" />
+        <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
         <script src="script.js" defer></script>
     </head>
     <body>
         <div class="level">Level: 1</div>
         <div class="exp">Exp: 0</div>
         <div class="title">Work, Play, Repeat</div>
-        <div class="description">By Arin - Alpha 1.2.1 - <a href="updnotes/index.html">Update Notes</a></div>
+        <div class="description">By Arin - Alpha 1.3 - <a href="updnotes/index.html">Update Notes</a></div>
         <h2>To-Do List</h2>
-        <button class="addentry">Add Assignment</button>
-        <input class="inptxt">
+        <!-- <button class="addentry">Add Assignment</button>
+        <input class="inptxt" placeholder="Enter Name">
+        <button onclick="openPopup()">Popup</button> -->
+        <button onclick="openPopup()" class="popupsummoner">New Assignment</button>
+        <br><hr>
+        <!-- Popout mode (FINISH LATER) -->
+        <!-- <button onclick="window.open('https:\/\/workplayrepeat.vercel.app', 'WPR', 'width=500,height=500')">Popout</button> -->
     </body>
 </html>

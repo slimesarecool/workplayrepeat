@@ -1,9 +1,59 @@
-Checklist
-Calender
-Leveling and Exp
-Game
-Finish lvl thing
+Bugs Fix:
+Only allow clicking on assingments when ur hovering on the text
+Replace chechmark box with image of checkmark box.
+Fix X button activating checklist
 
-Checklist Stuff:
-Fix enter key not working
-Add custom time to assignments
+Other Features:
+Popout Mode (Requires Finishing Vertical Mode)
+Lists
+Worlds
+Experience Bar
+Quests
+
+A1.3/1.4/1.5:
+Vertical Mode
+
+A1.3/1.4/1.5/1.6:
+Finish basic themes
+Sidebar
+Make custom time for assignments accessible after completing assignment
+Make clicking on the bg hide the popup
+
+A1.4:
+Add custom due date to assignments
+
+A1.5:
+Calender
+
+A1.5.1:
+Custom tests on calender
+
+B1.0:
+Dungeons
+
+B1.2:
+INV and cards
+Custom Confetti
+
+B1.3:
+General code optimization
+Website cleanup
+Packs
+
+B1.4:
+Custom themes
+Custom sfx
+
+B1.3/1.4:
+Custom dungeon packs
+
+B1.5:
+Finisher sfx and vfx
+
+B1.6:
+Custom pfp
+Custom pfp effects
+
+1.0:
+Accounts
+PFP effects implemented into accounts

@@ -3,18 +3,17 @@ html {
     color: #ffffff;
     font-family: sans-serif;
     text-align: center;
-    user-select: none;
     scrollbar-width: none;
+    user-select: none;
 }
 
 body {
     overflow-x: hidden;
-    overflow-y: hidden;
     height: 100vw;
 }
 
 .title {
-    font-size: 6vw;
+    font-size: 5vw;
 }
 
 .descriptions {
@@ -37,18 +36,31 @@ button, input {
     text-decoration: none;
     display: inline-block;
     border-radius: 6px;
-    transition: 0.5s;
+    transition: 0.25s;
     padding: 0.5vw;
 }
 
 button:hover, input:hover {
-	transition: 0.5s;
+	transition: 0.25s;
+    background-color: #494957;
 }
 
 button:active {
 	transition: 0.1s;
 	background-color: #15151a;
 }
+
+.popup {
+    font-size: 1.5vw;
+    position: absolute;
+    top: calc(52vh - 3vw);
+    left: 50%;
+    transform: translate(-50%, 0)
+}
+
+/* .popupdate {
+    margin-top: 10vh;
+} */
 
 a {
 	color: #297bff;
@@ -64,7 +76,13 @@ a:active {
 	color: #004ac2;
 }
 
-.rainbow {
+/* Remove when custom popup is added */
+::placeholder {
+    color: white;
+    opacity: 0.8;
+}
+
+/* .rainbow {
     animation: rainbow 4s alternate;
     animation-iteration-count: infinite;
 }
@@ -103,4 +121,4 @@ a:active {
     100% {
         color: rgb(255, 0, 0);
     }
-}
+} */

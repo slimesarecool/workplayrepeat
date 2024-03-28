@@ -1,0 +1,11 @@
+:root {
+    --bg-col: #1b1b1b;
+    --text-col: white;
+    --button-input-bg-col: #2f2f38;
+    --button-input-text-col: white;
+    --button-input-hover-col: #494957;
+    --button-input-click-col: #15151a;
+    --link: #297bff;
+    --link-hover: #80b0ff;
+    --link-click: #004ac2;
+}
